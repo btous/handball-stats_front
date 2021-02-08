@@ -1,0 +1,5 @@
+// importar tots els arxius scss de l'aplicació
+// (l'arxiu _variables no l'incloem perquè es crida des de vue.config.js)
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./_base.scss";

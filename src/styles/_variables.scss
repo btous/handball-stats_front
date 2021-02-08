@@ -1,0 +1,43 @@
+// importa tipografía desde google fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* defineix variables i funcions */
+$h1-font-size: 2.1875rem; // 35px
+$h2-font-size: 1.875rem; // 30px
+$h3-font-size: 1.4375rem; // 23px
+$h4-font-size: 1.25rem; // 20px
+$normal-font-size: 1.125rem; // 18px
+$small-font-size: 0.9375rem; // 15px
+$main-color: white;
+$secondary-color: #C43333;
+$light-background: rgba(98, 99, 125, 1);
+$dark-background: rgba(22, 22, 61, 1);
+
+// color degradat de fons
+// cal posar un mixin dins un altre mixin per poder-lo utilitzar com a funció
+@mixin background-gradient($color1, $color2) {
+    background: $color1;
+    background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, $color1), color-stop(100%, $color2));
+    background: -webkit-linear-gradient(top, $color1 0%, $color2 100%);
+    background: -o-linear-gradient(top, $color1 0%, $color2 100%);
+    background: -ms-linear-gradient(top, $color1 0%, $color2 100%);
+    background: linear-gradient(to bottom, $color1 0%, $color2 100%);
+    background-attachment: fixed;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62637d', endColorstr='#16163d', GradientType=0);
+}
+
+@mixin background-color() {
+    @include background-gradient($light-background, $dark-background)
+}
+
+// afegir punts suspensius quan el text no càpiga dins un element
+@mixin ellipsis() {
+    text-overflow: ellipsis; //all browsers
+
+    @-moz-document url-prefix() {
+        //Firefox
+        text-overflow: "...";
+    }
+}

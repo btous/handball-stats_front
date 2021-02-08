@@ -1,0 +1,273 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* set html font-size = 62.5% (10px) */
+/* for browsers with default font-size = 16px (most of them) it sets 1rem = 10px */
+/* this simplifies font-size, margin, padding, etc. calculation */
+/*
+html {
+  font-size: 62.5%;
+}
+*/
+
+/* make images full size and responsive */
+/* make images stick to bottom avoiding line underneath */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* make scrollbar thinner and stylized */
+/* only works on Firefox */
+* {
+    scrollbar-width: thin;
+}
+
+/* define fonts for document and titles */
+/* define height 100% for making background fills all window */
+html {
+    background: white;
+    font-size: 90%;
+    height: 100%;
+    // scroll-padding-top: 70px; /* set it with the height of sticky header for jumping page links not going under header */
+    /*
+    // calculate margin to header
+    $(window).resize(function() {
+        $(document.body).css("margin-top", $(".header-fixed").height());
+    }).resize();
+    */
+}
+
+body {
+    // max-width: 500px;
+    font-family: "Roboto", sans-serif;
+    @include background-color();
+    height: 100%;
+    margin: 0 auto;
+    font-size: $normal-font-size;
+    color: $main-color;
+
+    h1 {
+        font-size: $h1-font-size;
+        font-weight: 900;
+    }
+
+    h2 {
+        font-size: $h2-font-size;
+    }
+
+    h3 {
+        font-size: $h3-font-size;
+    }
+
+    h4 {
+        font-size: $h4-font-size;
+    }
+}
+
+// deifnir la mida de les icones
+.small-icon {
+    font-size: 0.8rem;
+}
+
+.medium-icon {
+    font-size: 1.25rem;
+}
+
+.big-icon {
+    font-size: 1.5rem;
+}
+
+.huge-icon {
+    font-size: 5rem;
+}
+
+// definir espai pel header, el contingut principal i el footer
+#app {
+    height: 100%;
+}
+
+#header {
+    flex-grow: 0;
+}
+
+#main-content {
+    flex: 1;
+    overflow: auto;
+    padding: 1em 1.5rem;
+}
+
+#footer-settings {
+    flex-grow: 0;
+}
+
+// crear una classe per mostrar el cursor adecuat al passar sobre els elements clicables
+.clickable {
+    cursor: pointer;
+}
+
+// definir estils barra navegació pestanyes
+.nav-tabs {
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    .nav-item {
+        .nav-link {
+            background-color: transparent;
+            border: none;
+            white-space: nowrap;
+            color: $main-color;
+            margin: 0.75rem 1.5rem 0.5rem 0;
+            padding: 0;
+            padding-right: 0.3rem;
+        }
+
+        .active {
+            border-bottom: 3px solid $secondary-color;
+        }
+    }
+}
+
+// definir estils layout en files
+.rows-layout {
+    .row-element {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: repeat(3, 1fr);
+        align-items: center;
+        line-height: 1.2;
+        background-color: transparent;
+        padding: 0.8rem 0.625rem;
+        border-bottom: 1px solid $secondary-color;
+
+        .thumbnail-element {
+            grid-column: 1 / 2;
+            grid-row: 1 / -1;
+        }
+
+        .selector-element {
+            grid-column: -2 / -1;
+            grid-row: 1 / -1;
+            align-self: center;
+        }
+    }
+}
+
+// definir estils components d'informació i de formularis crear-editar
+.info-element,
+.stats-element,
+.app-form {
+    .info-label,
+    .stats-label,
+    .form-label {
+        font-size: $small-font-size;
+        margin: 0.4rem 0;
+    }
+}
+
+.info-element,
+.stats-element {
+    .info-value {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.text-input,
+.select-box {
+    display: block;
+    width: 100%;
+    padding-left: 0.3125rem;
+    margin-bottom: 1.1rem;
+    border-radius: 0.3rem;
+    background-color: $main-color;
+    color: $secondary-color;
+}
+
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.625rem 0 1.25rem;
+    justify-content: space-around;
+}
+
+.form-button {
+    min-width: 9.375rem;
+    min-height: 2.1875rem;
+    margin: 0 0.625rem 0.625rem;
+    border-radius: 3rem;
+    border: none;
+}
+
+.accept-button {
+    background-color: $secondary-color;
+    color: $main-color;
+}
+
+.cancel-button {
+    background-color: $main-color;
+    color: $secondary-color;
+}
+
+// definir estils missatges d'error
+.errors {
+    font-size: 0.8em;
+    color: yellow;
+    text-align: center;
+}
+
+// definir estils botons per afegir el primer element d'un tipus
+.add-first-element {
+    display: inline-block;
+    //background-color: $secondary-color;
+    border: 3px solid $main-color;
+    border-radius: 0.625rem;
+    padding: 1.25rem;
+    .add-first-element-label {
+        margin-top: 1.25rem;
+    }
+}
+
+// Xtra small devices (foldables, 380px and down)
+@media (max-width: 350px) {
+    //reduir mida font del root element
+    html {
+        font-size: 80%;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    //augemntar mida font del root element
+    html {
+        font-size: 100%;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
